@@ -33,13 +33,13 @@ int wmain (int argc, wchar_t* argv[]) {
     if (argc < 3) {
         std::cout << "Utility for changing the password of the currently logged in user.\n";
         std::cout << "Assumes that account type is locally managed.\n";
-        std::cout << "Usage: ChangePassword <old-pwd> <new-pwd>" << std::endl;
+        std::cout << "Usage: ChangePassword <old-pwd> <new-pwd>\n";
         return +1;
     }
 
     std::wstring old_pwd = argv[1];
     std::wstring new_pwd = argv[2];
-    std::wcout << L"Changing password from " << old_pwd << L" to " << new_pwd << std::endl;
+    std::wcout << L"Changing password from " << old_pwd << L" to " << new_pwd << "\n";
 
     try {
         NET_API_STATUS res = NetUserChangePassword(NULL, NULL, old_pwd.c_str(), new_pwd.c_str());
@@ -49,5 +49,6 @@ int wmain (int argc, wchar_t* argv[]) {
         return -1;
     }
 
+    std::wcout << L"Password changing suceeded.\n";
     return 0;
 }
